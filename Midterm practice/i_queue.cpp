@@ -37,17 +37,22 @@ public:
             newNode->next = NULL;
             if(isEmpty())
                 front = rear = newNode;
+            else if(i==0)
+            {
+                newNode->next = front;
+                front = newNode;
+            }
             else
             {
                 int j = 0;
                 Node *temp = front;
-                while(j<i)
+                while(j<i-1)
                 {
                     temp = temp->next;
                     j++;
                 }
-                newNode->next = temp;
-                temp = newNode;
+                newNode->next = temp->next;
+                temp->next = newNode;
             }
         } 
     }
@@ -87,8 +92,10 @@ int main()
 {
     Queue q;
     q.enqueue(1, 0);
-    q.enqueue(2, 0);
-    q.enqueue(3, 0);
+    q.enqueue(2, 1);
+    q.enqueue(3, 2);
+    q.enqueue(5, 0);
+    q.enqueue(6, 1);
     q.display();
     return 0;
 }
